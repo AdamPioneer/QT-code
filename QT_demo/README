@@ -1,0 +1,6 @@
+BUILD libmsg.a:
+g++ -c msg.cpp 
+ar cr libmsg.a msg.o
+
+build msg_server:
+g++ -o msg_server msg_server.c
