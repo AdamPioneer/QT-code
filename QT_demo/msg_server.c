@@ -45,7 +45,7 @@ int main()
 			printf("read\n");
 		} else {
 			printf("else\n");
-			sleep(1);
+//			sleep(1);
 		}
 	}
 

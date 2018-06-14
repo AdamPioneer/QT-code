@@ -1,6 +1,11 @@
 BUILD libmsg.a:
-g++ -c msg.cpp 
+g++ -o msg.o -c msg.cpp 
 ar cr libmsg.a msg.o
 
 build msg_server:
 g++ -o msg_server msg_server.c
+
+
+linux build QT:
+qmake
+make
