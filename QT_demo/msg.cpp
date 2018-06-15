@@ -4,12 +4,14 @@
 #include<sys/sem.h>  // semaphore
 #include<sys/msg.h>  // message queue
 #include<string.h>   // memcpy
+#include<string>
 
 #include "msg.h"
 int create_msg(void)
 {
 	key_t key;
         int msqid;
+        std::string str;
 	       
 	 // 获取key值
         if((key = ftok(".", 'z')) < 0)

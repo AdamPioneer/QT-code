@@ -28,13 +28,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    mythread.cpp \
-    msg.cpp
+    msg.cpp \
+    captureimagethread.cpp \
+    stm32controlthread.cpp \
+    mainthread.cpp
 
 HEADERS += \
         mainwindow.h \
-    mythread.h \
-    mythread.h
+    captureimagethread.h \
+    stm32controlthread.h \
+    globalparameter.h \
+    mainthread.h
 
 FORMS += \
         mainwindow.ui

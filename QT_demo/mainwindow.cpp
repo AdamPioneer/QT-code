@@ -5,6 +5,9 @@
 #include <QFileDialog>
 #include <QFile>
 #include <QProcess>
+#include <QDebug>
+
+#include "globalparameter.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -52,13 +55,15 @@ void MainWindow::on_StartPushButton_clicked()
            ui->StartPushButton->setStyleSheet("");
            ui->StartPushButton->setStyleSheet("background-color:red");
            ui->StartPushButton->setText("STOP");
-           process.start("cmd.exe");
+           qDebug()<<"=====STOP";
+           //process.start("cmd.exe");
            //process.execute("H:\\11.QT\\build-helloworld1-Desktop_Qt_5_9_4_MinGW_32bit-Debug\\debug\\helloworld1.exe");
            //process.start("H:\\11.QT\\build-helloworld1-Desktop_Qt_5_9_4_MinGW_32bit-Debug\\debug\\helloworld1.exe");
        } else {
            ui->StartPushButton->setStyleSheet("");
            ui->StartPushButton->setStyleSheet("background-color:green");
            ui->StartPushButton->setText("START");
+           qDebug()<<"=====START";
            process.close();
        }
 }
@@ -67,7 +72,7 @@ void MainWindow::on_toolButton_clicked()
 {
     //QString directory = QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Save Path"), QDir::currentPath()));
     //QString file = QFileDialog::getOpenFileName(this);
-    QDir dir;
+    QDir dir("/");
     QString file = QFileDialog::getOpenFileName(this, QString("Load config file"),dir.absolutePath(), QString("config file(*)"));
     //ui->label->setText("lllllll");
 
@@ -80,6 +85,7 @@ void MainWindow::on_toolButton_clicked()
     } else {
         ui->comboBox->addItem(file);
         ui->comboBox->setCurrentIndex(ui->comboBox->findText(file));
+        ecoliThread.setSequenceScript(file);
     }
 
 }
@@ -88,8 +94,8 @@ void MainWindow::on_toolButton_clicked()
 void MainWindow::on_toolButton_uart_clicked()
 {
     //QString directory = QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Save Path"), "/dev"));
-    //QDir dir("/");
-    QDir dir("C:");
+    QDir dir("/");
+    //QDir dir("C:");
     QString UartFile = QFileDialog::getOpenFileName(this, QString("Load UART"),dir.absolutePath(), QString("uart device(tty*)"));
     //ui->label->setText("lllllll");
 
@@ -100,6 +106,7 @@ void MainWindow::on_toolButton_uart_clicked()
             ui->comboBox_uart->addItem("Please select uart");
 
         ui->comboBox_uart->setCurrentIndex(ui->comboBox_uart->findText("Please select uart"));
+        qDebug()<<"===on_toolButton_uart_clicked";
     } else {
         ui->comboBox_uart->addItem(UartFile);
         ui->comboBox_uart->setCurrentIndex(ui->comboBox_uart->findText(UartFile));
@@ -121,5 +128,5 @@ void MainWindow::on_pushButton_testInfo_clicked()
 
 void MainWindow::on_MainWindow_destroyed()
 {
-
+    qDebug()<<"=====on_MainWindow_destroyed";
 }

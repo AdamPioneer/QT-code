@@ -4,38 +4,31 @@
 #include <QMutex>
 #include <qlogging.h>
 #include <QDebug>
-
-#include "mythread.h"
 #include <qthread.h>
-#if 0
-namespace Ui {
-class myThread;
-}
 
-class myThread : public QThread
-{
-    Q_OBJECT
-public:
-    Thread();
-    void stop();
-private:
-    bool m_stopFlag;
-    QMutex mutex;
-protected:
-    void run();
-};
+#include "globalparameter.h"
 
 
-#endif
+STM32ControlThread STM32Thread;
+captureImageThread ImageThread;
+mainThread ecoliThread;
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    myThread backGroudThread;
 
-    QObject::connect(&backGroudThread, SIGNAL(finished()), &a, SLOT(quit()));
-    backGroudThread.setPriority(backGroudThread.HighPriority);
-    backGroudThread.start();//启动线程
+    QObject::connect(&ecoliThread, SIGNAL(finished()), &a, SLOT(quit()));
+    QObject::connect(&STM32Thread, SIGNAL(finished()), &a, SLOT(quit()));
+    QObject::connect(&ImageThread, SIGNAL(finished()), &a, SLOT(quit()));
+
+    ecoliThread.setPriority(QThread::HighPriority);
+    STM32Thread.setPriority(QThread::HighestPriority);
+    ImageThread.setPriority(QThread::HighestPriority);
+
+    ecoliThread.start();//启动线程
+    STM32Thread.start();//启动线程
+    ImageThread.start();//启动线程
 
     w.init_setup();
     QObject::connect(&a, SIGNAL(finished()), &a, SLOT(quit()));
