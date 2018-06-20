@@ -7,11 +7,13 @@
 #include <qthread.h>
 
 #include "globalparameter.h"
+#include "parsesequencescript.h"
 
 
 STM32ControlThread STM32Thread;
 captureImageThread ImageThread;
 mainThread ecoliThread;
+//parseSequenceScript reader;
 
 int main(int argc, char *argv[])
 {

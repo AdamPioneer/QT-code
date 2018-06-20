@@ -18,8 +18,8 @@ public:
 
     /* add operate function */
     void init_setup();
-    QString get_Uartfile();
-    QString get_ConfigFile();
+    QString get_configFile();
+    QString get_sequenceFile();
 
 private slots:
     //void on_PushButton_clicked();
@@ -33,6 +33,8 @@ private slots:
     void on_pushButton_testInfo_clicked();
 
     void on_MainWindow_destroyed();
+
+    void on_toolButton_config_clicked();
 
 private:
     Ui::MainWindow *ui;

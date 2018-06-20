@@ -4,6 +4,7 @@
 #include "captureimagethread.h"
 #include "stm32controlthread.h"
 #include "mainthread.h"
+#include "parsesequencescript.h"
 
 extern STM32ControlThread STM32Thread;
 extern captureImageThread ImageThread;

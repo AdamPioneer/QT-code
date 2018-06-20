@@ -31,18 +31,18 @@ void MainWindow::init_setup()
     ui->comboBox->addItem("Please select the file");
     ui->comboBox->setCurrentIndex(ui->comboBox->findText("Please select the file"));
 
-    ui->comboBox_uart->addItem("Please select uart");
-    ui->comboBox_uart->setCurrentIndex(ui->comboBox_uart->findText("Please select uart"));
+    ui->comboBox_config->addItem("Please select uart");
+    ui->comboBox_config->setCurrentIndex(ui->comboBox_config->findText("Please select uart"));
 
     ui->testDetailInfo->setVisible(false);
 
 }
-QString MainWindow::get_Uartfile()
+QString MainWindow::get_configFile()
 {
-    return ui->comboBox_uart->currentText();
+    return ui->comboBox_config->currentText();
 }
 
-QString MainWindow::get_ConfigFile()
+QString MainWindow::get_sequenceFile()
 {
     return ui->comboBox->currentText();
 }
@@ -64,7 +64,8 @@ void MainWindow::on_StartPushButton_clicked()
            ui->StartPushButton->setStyleSheet("background-color:green");
            ui->StartPushButton->setText("START");
            qDebug()<<"=====START";
-           process.close();
+           ecoliThread.parseSequenceScript();
+           //process.close();
        }
 }
 
@@ -72,7 +73,7 @@ void MainWindow::on_toolButton_clicked()
 {
     //QString directory = QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Save Path"), QDir::currentPath()));
     //QString file = QFileDialog::getOpenFileName(this);
-    QDir dir("/");
+    QDir dir("./");
     QString file = QFileDialog::getOpenFileName(this, QString("Load config file"),dir.absolutePath(), QString("config file(*)"));
     //ui->label->setText("lllllll");
 
@@ -93,24 +94,7 @@ void MainWindow::on_toolButton_clicked()
 
 void MainWindow::on_toolButton_uart_clicked()
 {
-    //QString directory = QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Save Path"), "/dev"));
-    QDir dir("/");
-    //QDir dir("C:");
-    QString UartFile = QFileDialog::getOpenFileName(this, QString("Load UART"),dir.absolutePath(), QString("uart device(tty*)"));
-    //ui->label->setText("lllllll");
 
-
-    if(UartFile.isEmpty())
-    {
-        if(ui->comboBox_uart->findText(UartFile) == -1)
-            ui->comboBox_uart->addItem("Please select uart");
-
-        ui->comboBox_uart->setCurrentIndex(ui->comboBox_uart->findText("Please select uart"));
-        qDebug()<<"===on_toolButton_uart_clicked";
-    } else {
-        ui->comboBox_uart->addItem(UartFile);
-        ui->comboBox_uart->setCurrentIndex(ui->comboBox_uart->findText(UartFile));
-    }
 
 }
 
@@ -129,4 +113,26 @@ void MainWindow::on_pushButton_testInfo_clicked()
 void MainWindow::on_MainWindow_destroyed()
 {
     qDebug()<<"=====on_MainWindow_destroyed";
+}
+
+void MainWindow::on_toolButton_config_clicked()
+{
+    //QString directory = QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Save Path"), "/dev"));
+    QDir dir("./");
+    //QDir dir("C:");
+    QString configFile = QFileDialog::getOpenFileName(this, QString("Load config"),dir.absolutePath(), QString("default config(*)"));
+    //ui->label->setText("lllllll");
+
+
+    if(configFile.isEmpty())
+    {
+        if(ui->comboBox_config->findText(configFile) == -1)
+            ui->comboBox_config->addItem("Please select default config");
+
+        ui->comboBox_config->setCurrentIndex(ui->comboBox_config->findText("Please select  default config"));
+        qDebug()<<"===on_toolButton_uart_clicked";
+    } else {
+        ui->comboBox_config->addItem(configFile);
+        ui->comboBox_config->setCurrentIndex(ui->comboBox_config->findText(configFile));
+    }
 }

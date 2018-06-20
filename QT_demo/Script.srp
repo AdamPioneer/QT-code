@@ -1,0 +1,41 @@
+<MiniScript ScriptName="Script" RepeatTimes="1">
+  <Pump>
+    <AspiVolumn>0</AspiVolumn>//吸多少微升液体
+    <AspirationRate>0</AspirationRate>//吸液体速度 （微升每分钟）
+    <AspirDelay>0</AspirDelay>     // 吸液体延时
+    <DispVolumn>0</DispVolumn>//排多少微升液体
+    <DispenseRate>0</DispenseRate>排液体速度 （微升每分钟）
+    <DispDelay>0</DispDelay>// 吸液体延时
+    <Bypass>false</Bypass>//是否要走旁路
+    <Continuation>false</Continuation>//是否跑混合功能
+    <IsAspiration>true</IsAspiration>//是否吸液
+    <IsDispense>true</IsDispense>////是否排液
+  </Pump>
+  <Valve>
+    <Position>0</Position>//移到第几个孔
+    <BeginPos>0</BeginPos>//从第几个孔开始移动（用于混合功能。不使用时设置为0）
+  </Valve>
+  <CMOSSensor>
+    <FrameRate>4</FrameRate>//帧速
+    <ExposureTime>4</ExposureTime>//曝光时间
+    <Gain>1</Gain>//增益
+    <ISP>1</ISP>//是否用芯片处理图像功能
+    <BLC>0</BLC>
+    <WindowCropping>1</WindowCropping>
+    <SCCB>0</SCCB>
+    <SCCBAddress>0</SCCBAddress>
+    <SCCBData>0</SCCBData>
+    <Start>0</Start>//从第几张开始保存图像
+    <Count>1</Count>//设置拍图的数量
+    <IsKeep>false</IsKeep>//是否允许一边拍图一边执行其他操作。
+    <IsDarkimg>false</IsDarkimg>//是否标记为dark图像
+    <ImageTypeNo>0</ImageTypeNo>//
+  </CMOSSensor>
+  <Temperature>
+    <Temperature>0</Temperature>//设置温度的目标
+    <IsKeepTEC>true</IsKeepTEC>//是否要保持
+  </Temperature>
+  <Delay>
+    <DelayTime>0</DelayTime>//模块与模块的延时，单位为秒
+  </Delay>
+</MiniScript>

@@ -8,24 +8,46 @@
 #include <string>
 #include <QFile>
 
+#include <QtXml>
+#include <QDomDocument>
+#include <QXmlStreamReader>
+
+class ParseSequenceScript : public QXmlStreamReader
+{
+public:
+
+private:
+    QXmlStreamReader *reader;
+protected:
+};
+
 class mainThread : public QThread
 {
  //   Q_OBJECT
 public:
     mainThread();
     void stop();
+    ParseSequenceScript *mytest;
 
-    void setDefaultConfFile(QString File);
+    /* sequence script */
+    QString getSequenceScriptName();
+    int getSequenceRepeatTimes();
     void setSequenceScript(QString Script);
+    void parseSequenceScript(void);
+
+    /*defaule configuration */
+    void setDefaultConfFile(QString File);
+    void parseDefaultConfFile(void);
 private:
     QString defaultConfFile;
     QString sequenceScript;
     bool m_stopFlag;
+    ParseSequenceScript *parseSequence;
     QMutex mutex;
-    void parseSequenceScript(void);
-    void parseDefaultConfFile(void);
+
 protected:
     void run();
+
 };
 
 #endif // mainThread_H

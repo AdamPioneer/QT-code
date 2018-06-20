@@ -63,7 +63,10 @@
      <string>...</string>
     </property>
    </widget>
-   <widget class="QToolButton" name="toolButton_uart">
+   <widget class="QToolButton" name="toolButton_config">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>780</x>
@@ -76,7 +79,7 @@
      <string>...</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_uart">
+   <widget class="QComboBox" name="comboBox_config">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -86,7 +89,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label_uart">
+   <widget class="QLabel" name="label_config">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -96,7 +99,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>select uart</string>
+     <string>select config</string>
     </property>
    </widget>
    <widget class="QTextBrowser" name="testDetailInfo">
